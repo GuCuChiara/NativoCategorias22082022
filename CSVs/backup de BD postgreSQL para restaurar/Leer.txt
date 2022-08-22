@@ -21,6 +21,7 @@ primero creamos una base de datos vacía desde desde pg admin
 
 Luego: poner el backup en la carpeta bin
 desde cmd ubicados en:	C:\Program Files\PostgreSQL\14\bin
+copiar y pegar:
 	psql -h localhost -p 5432 -U postgres -f Nativo30_Backup.sql Nativo30
 
 -----------------------------------------------------------------------------------------------
