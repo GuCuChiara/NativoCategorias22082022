@@ -1,0 +1,54 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Resultados de la Búsqueda</title> {% endblock %}
+
+<!--bloque de código-->
+{% block cuerpo %} 
+  <div class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-text">
+            <h3>Buscaste: <strong>{{query}}</strong></h3>
+            <p></p>
+           
+          </span>
+        </div>
+      </nav>
+      <div class="form-control-lg">
+        <a class="btn btn-primary" href="{% url 'busqueda_dx' %}" role="button">Volver</a>
+        </div>
+    {% if codigo %}
+        <p>Diagnósticos encontrados: {{codigo|length}} diagnósticos</p>
+        <!---->
+        <ul class="">
+          <div class="container">
+            <div class="row">
+              <div class="col"> <strong> Prestación AMS: </strong></div>
+              <div class="col"> <strong>Descripción: </strong></div>  
+              <div class="col"><strong>Código CIE 10: </strong></div>
+              <div class="col"><strong>Descripción CIE 10: </strong></div>
+              <hr>            
+              <hr>
+            </div>
+        </div>
+            {% for resultados in codigo %}
+            <div class="container">
+                <div class="row">
+                  <div class="col">{{resultados.Presta_Id}} </div>
+                  <div class="col">{{resultados.Descripcion}}</div>
+                  <div class="col">{{resultados.CIE_10_Id}}</div>
+                  <div class="col">{{resultados.CIE10_DESC}}</div>
+                  <hr>
+                </div>
+            </div>
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Diagnóstico no encontrado</p>
+    {% endif %}
+  </div>  
+  <div class="form-control-lg">
+    <a class="btn btn-primary" href="{% url 'busqueda_dx' %}" role="button">Volver</a>
+    </div>
+  {% endblock cuerpo %} 

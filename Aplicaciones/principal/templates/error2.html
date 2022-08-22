@@ -1,0 +1,10 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Error</title>{% endblock %}
+<!--bloque de código-->
+{% block cuerpo %} 
+<h1>Debes escribir algo!</h1>
+<div class="form-control-lg">
+    <a class="btn btn-primary" href="{% url 'prueba_autocomplete' %}" role="button">Volver</a>
+    </div>
+{% endblock cuerpo %}

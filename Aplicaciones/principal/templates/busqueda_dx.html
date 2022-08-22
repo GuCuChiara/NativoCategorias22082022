@@ -1,0 +1,114 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Busqueda</title>{% endblock %}
+<!--bloque de código-->
+{% block cuerpo%} 
+    <nav class="navbar navbar-light bg-light"></nav>
+    
+    <!--  NUEVO   -->
+    <div class="container"><!--  CONTAINER NUEVO   -->
+      <div class="jumbotron jumbotron-fluid">
+              <div class="container"><!--  resultados de la búsqueda   -->
+                  <h1 class="display-6">Buscador de diagnósticos CIE10</h1>
+              </div>
+              <div class="form-control-lg">
+                <a class="btn btn-primary" href="javascript: history.go(-1)" role="button">Volver</a>
+                </div>
+      </div>
+         
+         <!-- ==================================/buscar/======Diag======================================================= -->
+        <div class="card text-bg-primary mb-3"> <!-- principal card1 -->
+        <div class="card-header"><h5 class="card-title">Diagnósticos por prestación, ingrese el código de prestación AMS:</h5><!-- cabecera card1 -->
+        
+        </div><!-- fin cabecera card1 -->
+        <div class="card-body"><!-- cuerpo card 1-->
+           <!--formulario de busqueda de diagnósticos CIE10 por prestación-->
+           <form action="/buscar/" method="GET">
+                     <div class="input-group">
+                          <!--creamos listado-->
+                      <input type="text" list ="prestacionesIdlist"class="form-control" placeholder="ej: NM031301" name="diag" id="diag"> 
+                      <datalist id="prestacionesIdlist">
+                        {%  for prestaciones in showprestaciones %}
+                          <option value="{{ prestaciones.Presta_Id }}"></option>
+                        {% endfor %}
+                        </datalist>
+                      <button type="submit" class="btn btn-primary">Buscar</button>
+                      <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>
+                </form>   
+        </div><!-- fincuerpo card1 -->
+        </div><!-- finprincipal card1 -->  
+         <!-- ==============================/buscar_AMS/======diag4======================================================= -->
+        <div class="card text-bg-primary mb-3"> <!-- principal card2 -->
+        <div class="card-header"><h5 class="card-title">Búsqueda de prestaciones por nombre:</h5><!-- cabecera card2 -->
+        
+        </div><!-- fin cabecera card2 -->
+        <div class="card-body"><!-- cuerpo card 2-->
+          <!--formulario de busqueda de prestaciones AMS-->
+              <form action="/buscar_AMS/" method="GET">
+                <div class="input-group">
+                  <!--creamos listado-->
+                  <input type="text" list ="prestacionesNamelist" class="form-control" placeholder="ej: Adenoidectomia" name="diag4" id="diag4"> 
+                  <datalist id="prestacionesNamelist">
+                    {%  for prestaciones in showprestaciones %}
+                      <option value="{{ prestaciones.Descripcion }}"></option>
+                    {% endfor %}
+                  </datalist>
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+              </form>
+        </div><!-- fincuerpo card2 -->
+        </div><!-- finprincipal card2 -->  
+         <!-- ================================/buscar_CIE10/=======diag2====================================================== -->
+        <div class="card text-bg-primary mb-3"> <!-- principal card3 -->
+        <div class="card-header"><h5 class="card-title">Código CIE10 y prestación AMS relacionada:</h5><!-- cabecera card3 -->
+        
+        </div><!-- fin cabecera card3 -->
+        <div class="card-body"><!-- cuerpo card 3-->
+          <!--formulario de busqueda Diagnóstico CIE10  y prestación AMS relacionada-->
+              <form action="/buscar_CIE10/" method="GET">
+                <div class="input-group">
+                  <input type="text" list ="showCIE10list" class="form-control" placeholder= "Ingrese un código CIE10 ej. R10.3 " name="diag2" id="diag2"> 
+                  <datalist id="showCIE10list">
+                    {%  for diagnosticos in showCIE10 %}
+                      <option value="{{ diagnosticos.CIE_10_Id }}"></option>
+                    {% endfor %}
+                  </datalist>
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+                  <button type="reset" class="btn btn-danger">Reset</button>
+                </div>
+              </form>
+        </div><!-- fincuerpo card3 -->
+        </div><!-- finprincipal card3 -->
+          <!-- ================================/buscar_CIE10_x/=======diag3====================================================== -->
+        <div class="card text-bg-primary mb-3"> <!-- principal card4 -->
+        <div class="card-header"><h5 class="card-title">Buscador de patologías CIE10, ingrese diagnóstico a buscar:</h5><!-- cabecera card4 -->
+        
+        </div><!-- fin cabecera card4 -->
+        <div class="card-body"><!-- cuerpo card 4-->
+          <!--formulario de busqueda de códigos CIE-10-->
+              <form action="/buscar_CIE10_x/" method="GET">              
+                    <div class="input-group">
+                      <input type="text" list ="showCIE10_Diag_list" class="form-control" placeholder= "ej. Neumonía " name="diag3" id="diag3"> 
+                      <datalist id="showCIE10_Diag_list">
+                        {%  for diagnosticos in showCIE10 %}
+                          <option value="{{ diagnosticos.CIE10_DESC }}"></option>
+                        {% endfor %}
+                      </datalist>
+                      <button type="submit" class="btn btn-primary">Buscar</button>
+                      <button type="reset" class="btn btn-danger">Reset</button>
+                    </div>                               
+              </form>   
+        </div><!-- fincuerpo card4 -->
+        </div><!-- finprincipal card4 -->    
+       <!-- ====================================================================================================================== -->
+        
+       
+     <a class="btn btn-primary" href="{% url 'index' %}" role="button">Home</a>
+        
+    </div><!--  FIN CONTAINER NUEVO   -->
+    <!--  FIN NUEVO   -->
+    {% endblock cuerpo%} 
+      
+        

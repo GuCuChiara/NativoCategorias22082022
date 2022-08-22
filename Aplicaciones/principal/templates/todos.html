@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Todos los códigos</title>{% endblock %}
+{% block cuerpo%} 
+
+<div class="container-fluid">
+    <h2 class="card-title">Todos los códigos en esta página</h2>
+    <ul class="">
+      <div class="container">
+        <div class="row">
+          <div class="col"> <strong> SNOMED_CT_ID: </strong></div>
+          <div class="col"> <strong>SNOMED_CT_FSN: </strong></div>
+          <div class="col"><strong>CIE_10: </strong></div>
+          <div class="col"><strong>CIE10_DESC: </strong></div>
+          <hr>
+        </div>
+    </div>
+    <p> 
+        {% for item in codigos %} <!--codigos es la clave del diccionario contexto en views-->
+        <div class="container">
+        <div class="row">
+          <div class="col">{{ item.SNOMED_CT_ID }}</div>
+            <div class="col">{{ item.SNOMED_CT_FSN }}</div>
+              <div class="col">{{ item.CIE_10 }}</div>
+                <div class="col">{{ item.CIE10_DESC }}</div>
+                <hr>
+              </div>
+            </div>
+        {% endfor %}
+    </p>
+
+ </div>  
+{% endblock cuerpo%}

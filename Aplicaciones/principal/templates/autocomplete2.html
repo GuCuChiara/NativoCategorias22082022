@@ -1,0 +1,57 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Buscador CIE10</title>{% endblock %}
+<!--bloque de código-->
+{% block cuerpo %} 
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-text">
+       <h3>Buscador diagnósticos CIE10</h3>
+      </span>
+    </div>
+  </nav>
+  <div class="container">
+    
+  </div>
+  <div class="container">
+   <div class="col-8">
+    <!--formulario para búsqueda filtrada-->
+    <form action="/buscar_CIE10_x/" method="GET"> 
+      <div class="form-control-lg">
+        <label class="form-control form-control-lg" for="cie10">Buscador de patologías CIE10, ingrese diagnóstico a buscar:</label>
+      </div>
+      <div class="form-control-lg">
+        <input class="form-control form-control-lg" placeholder= "ej. Neumonía " type="text" name="diag3" id="diag3">
+    </div>
+    <!--redirige a la página B_filtrada-->
+    <div class="form-control-lg">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    <button type="reset" class="btn btn-danger"> Reset &nbsp;</button>
+    </div>
+    <!--?-->
+    <!--script de autocompletado-->
+    <script>
+      $( function() {
+        $( "#diag3" ).autocomplete({
+            source: '{% url "autocomplete2" %}',
+            minLength: 2
+        });
+        });
+      </script>
+    </form> 
+  </div>
+  </div>
+  <div class="container"></div>
+  <div class="form-control-lg">
+    <a class="btn btn-primary" href="javascript: history.go(-1)" role="button">Volver</a>
+    </div>
+    
+     
+ 
+
+    
+{% endblock cuerpo %} 
+{% block footer %}
+{% load static %}
+    <script type ="text/javascript" src="{% static 'new.js' %}"></script>
+{% endblock footer %}

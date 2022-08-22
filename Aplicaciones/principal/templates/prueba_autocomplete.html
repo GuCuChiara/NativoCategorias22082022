@@ -1,0 +1,46 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Creación de Códigos</title>{% endblock %}
+<!--bloque de código-->
+{% block cuerpo %} 
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-text">
+       <h3>prueba de búsqueda con autocompletado</h3>
+      </span>
+    </div>
+  </nav>
+  <div class="container">
+    
+  </div>
+  <div class="container">
+    <div class="col-8">
+    <!--formulario para búsqueda filtrada-->
+    <form action="/B_filtrada1/" method="GET"> 
+      <div class="form-control-lg">
+        <label class="form-control form-control-lg" for="product">Ingrese abajo el diagnóstico SNOMED-CT</label>
+      </div>
+      <div class="form-control-lg">
+        <input class="form-control form-control-lg" type="text" name="product" id="product">
+    </div>
+    <!--redirige a la página B_filtrada-->
+    <div class="form-control-lg">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    <button type="reset" class="btn btn-danger"> Reset &nbsp;</button>
+    </div>
+    <!--?-->
+    <!--script de autocompletado-->
+    <script>
+      $( function() {
+        $( "#product" ).autocomplete({
+            source: '{% url "prueba_autocomplete" %}',
+            minLength: 4
+        });
+        });
+      </script>
+    </form> 
+  </div>
+  
+  </div>
+
+{% endblock cuerpo %} 

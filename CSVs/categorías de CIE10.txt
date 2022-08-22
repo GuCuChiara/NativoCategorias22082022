@@ -1,0 +1,17 @@
+-----------------------------------------------------------------------------------------------------------
+Categorías (DETERMINAN EL ORDEN DE APARICIÓN EN LA BÚSQUEDA)
+   
+1-	3 dígitos	M00	Artritis piógena (séptica) (L)
+2-	5 dígitos	M00.0	Artritis y poliartritis estafilocócica
+			M13.9	Artritis, no especificada 
+3-	6 dígitos	M00.01	Artritis Stafilococo y Polyartitis Región de Hombro 
+4-	otros		M25	Otros trastornos de articulación, no clasificados bajo otro concepto
+4-	otras		M12	Otras artropatías y las no especificadas
+
+
+-----------------------------------------------------------------------------------------------------------
+Errores corregidos en la importación a PostgreSQL
+Key (codCIE10_Id_id)=(X519) is not present in table "principal_cie10nativo" --->  	12271,NM430193,X519 a 12271,NM430193,X51.9
+Key (codCIE10_Id_id)=(Z769) is not present in table "principal_cie10nativo".--->	12273,NM430193,Z769 a 12273,NM430193,Z76.9
+
+------------------------------------------------------------------------------------------------------------

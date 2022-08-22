@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Resultados de la Búsqueda</title> {% endblock %}
+        {% comment %}
+          04082022
+        {% endcomment %} 
+<!--def buscar_CIE10_x(request):-->
+{% block cuerpo %} 
+
+
+<nav class="navbar navbar-light bg-light"></nav>
+<!--  NUEVO   -->
+<div class="container"><!--  CONTAINER NUEVO   -->
+  <!-- ---------------------------------- -->   
+  <div class="form-control-lg">
+    <a class="btn btn-primary" href="javascript: history.go(-1)" role="button">Volver</a>
+    </div>
+	<!-- ---------------------------------- -->   
+  <div class="card text-bg-primary mb-3"> <!-- principal card -->
+    <div class="card-header"><!-- cabecera card -->
+      <h1 class="display-6">Buscaste:</h1>
+      <div class="row">
+        <div class="col-md-12"><h3>{{query}}</h3></div>
+      </div>
+    </div><!-- fin cabecera card -->
+    </div><!-- fin principal card -->     
+    <!-- ---------------------------------- -->    
+    <div class="card text-bg-primary mb-3"> <!-- principal card -->
+      <div class="card-header"><!-- cabecera card -->
+        {% if codigo %}
+        <h1 class="display-6">Diagnósticos encontrados: <span class="btn btn-success">{{codigo|length}}</span></h1>
+      </div><!-- fin cabecera card -->
+      </div><!-- fin principal card -->     
+       <!-- ---------------------------------- -->   
+  <div class="card text-bg-primary mb-3"> <!-- principal card1 -->
+    <div class="card-header"><h5 class="card-title"></h5><!-- cabecera card1 -->
+      <div class="row">
+        <div class="col-md-4"><h4><span class="badge bg-secondary">Código CIE 10:</span></h4></div>
+        <div class="col-md-8"><h4><span class="badge bg-secondary">Descripción CIE 10:</span></h4></div>
+      </div>
+    </div><!-- fin cabecera card 1-->
+    <div class="card-body"><!-- cuerpo card 1-->
+        {% for resultados in codigo %}
+          <div class="row">
+            <div class="col-md-4">{{resultados.CIE_10_Id}}</div>
+            <div class="col-md-8">{{resultados.CIE10_DESC}}</div>
+            <hr>
+          </div>
+        {% endfor %}
+        {% else %}
+        <h1 class="display-6">No se encontró diagnóstico <span class="btn btn-danger">{{codigo|length}}</span></h1>
+    {% endif %}
+		</div><!-- fincuerpo card 1 -->
+    </div><!-- finprincipal card1 -->
+    
+    <!-- ---------------------------------- --> 
+    <!-- Descripción del código  de prestación AMS asociado--> 
+    
+  <div class="card text-bg-primary mb-3"> <!-- principal card -->
+    <div class="card-header"><!-- cabecera card -->
+      {% if cod %}
+      <h1 class="display-6">Prestaciones AMS relacionadas: <span class="btn btn-success">{{cod|length}}</span></h1>
+    </div><!-- fin cabecera card -->
+    </div><!-- fin principal card -->     
+ <!-- ---------------------------------- --> 
+<div class="card text-bg-primary mb-3"> <!-- principal card3 -->
+  <div class="card-header"><h5 class="card-title"></h5><!-- cabecera card3 -->
+    <div class="row">
+      <div class="col-md-4"><h4><span class="badge bg-secondary">Prestación AMS:</span></h4></div>
+      <div class="col-md-8"><h4><span class="badge bg-secondary">Descripción:</span></h4></div>
+    </div>
+  </div><!-- fin cabecera card3 -->
+  <div class="card-body"><!-- cuerpo card 3-->
+      {% for resultados in cod %}
+      <div class="row">
+        <div class="col-md-4">{{resultados.Presta_Id}}</div>
+        <div class="col-md-8">{{resultados.Descripcion}}</div>
+        <hr>
+      </div>
+      {% endfor %}
+         
+    {% else %}
+    <h1 class="display-6">No se encontró prestación AMS relacionada <span class="btn btn-danger">{{cod|length}}</span></h1>
+    {% endif %}
+  </div><!-- fincuerpo card3 -->
+  </div><!-- finprincipal card3 -->  
+  <!-- ---------------------------------- -->   
+
+  
+  <div class="form-control-lg">
+    <a class="btn btn-primary" href="javascript: history.go(-1)" role="button">Volver</a>
+    </div>
+  <!-- ---------------------------------- -->   
+    
+</div><!--  FIN CONTAINER NUEVO   -->
+<!--  FIN NUEVO   -->
+
+
+  {% endblock cuerpo %} 

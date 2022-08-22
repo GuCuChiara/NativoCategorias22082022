@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Error</title>{% endblock %}
+<!--bloque de código-->
+{% block cuerpo %} 
+<nav class="navbar navbar-light bg-light"></nav>
+<!--  NUEVO   -->
+<div class="container"><!--  CONTAINER NUEVO   -->
+	<div class="jumbotron jumbotron-fluid">
+        	<div class="container"><!--  resultados de la búsqueda   -->
+        	  	<h1 class="display-4">Debes escribir algo!!</h1>
+          		<p class="lead">No se registraron ingresos de datos en el campo</p>
+        	</div>
+  </div>
+    
+    
+    <!-- ---------------------------------- -->   
+  <div class="form-control-lg">
+    <a class="btn btn-primary" href="javascript: history.go(-1)" role="button">Volver</a>
+    </div>
+  <!-- ---------------------------------- -->   
+</div><!--  FIN CONTAINER NUEVO   -->
+<!--  FIN NUEVO   -->
+
+{% endblock cuerpo %}

@@ -1,0 +1,124 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Resultados de la Búsqueda</title> {% endblock %}
+
+<!--def buscar_AMS(request):-->
+{% block cuerpo %} 
+<nav class="navbar navbar-light bg-light"></nav>
+<nav class="navbar navbar-light bg-light"></nav>
+<!--  NUEVO   -->
+<div class="container"><!--  CONTAINER NUEVO   -->
+
+	<!-- ---------------------------------- -->   
+  <div class="form-control-lg">
+    <a class="btn btn-primary" href="javascript: history.go(-1)" role="button">Volver</a>
+    </div>
+	<!-- ---------------------------------- -->   
+  <div class="card text-bg-primary mb-3"> <!-- principal card -->
+    <div class="card-header"><!-- cabecera card -->
+      <h1 class="display-6">Buscaste:</h1>
+      <div class="row">
+        <div class="col-md-12"><h3>{{query}}</h3></div>
+      </div>
+    </div><!-- fin cabecera card -->
+    </div><!-- fin principal card -->   
+<!-- ---------------------------------- -->      
+    <div class="card text-bg-primary mb-3"> <!-- principal card -->
+      <div class="card-header"><!-- cabecera card -->
+	{% if codigo %}
+      <h1 class="display-6">Prestaciones AMS vinculadas: <span class="btn btn-success">{{codigo|length}}</span></h1>
+	 {% else %}
+	<h1 class="display-6">No existen prestaciones AMS vinculadas <span class="btn btn-danger">{{codigo|length}}</span></h1>
+  {% endif %} 
+    </div><!-- fin cabecera card -->
+      </div><!-- fin principal card -->     
+       <!-- ---------------------------------- -->  
+     <!-- ---------------------------------- -->  
+     {% if codigo %} 
+  <div class="card text-bg-primary mb-3"> <!-- principal card1 -->
+    <div class="card-header"><h5 class="card-title"></h5><!-- cabecera card1 -->
+      <div class="row">
+        <div class="col-md-4"><h4><span class="badge bg-secondary">Prestación</span></h4></div>
+        <div class="col-md-8"><h4><span class="badge bg-secondary">Descripción</span></h4></div>
+      </div>
+    </div><!-- fin cabecera card 1-->
+    <div class="card-body"><!-- cuerpo card 1-->
+        {% for resultados in codigo %}
+          <div class="row">
+            <div class="col-md-4">{{resultados.Presta_Id}}</div>
+            <div class="col-md-8">{{resultados.Descripcion}}</div>
+            <hr>
+          </div>
+        {% endfor %}
+		</div><!-- fincuerpo card 1 -->
+    </div><!-- finprincipal card1 -->
+    
+    <!-- ---------------------------------- --> 
+    <div class="card text-bg-primary mb-3"> <!-- principal card2 -->
+    <div class="card-header"><h5 class="card-title">Búsqueda restringida a los {{codigo2|length}} diagnósticos de la prestación:</h5><!-- cabecera card2 -->
+		
+    </div><!-- fin cabecera card2 -->
+    <div class="card-body"><!-- cuerpo card 2-->
+      <form action="/buscar_CIE10_x/" method="GET">
+        
+        <div class="input-group">
+          <input type="text" list ="showCIE10list" class="form-control" placeholder= "Ingrese un diagnóstico, ej. diabetes 2 " name="diag3" id="diag3"> 
+          <datalist id="showCIE10list">
+            {% for resultados in codigo2 %}
+              <option value="{{resultados.CIE10_DESC}}"></option>
+            {% endfor %}
+          </datalist>
+          <button type="submit" class="btn btn-primary">Buscar</button>
+          <button type="reset" class="btn btn-danger">Reset</button>
+        </div>
+      </form>
+		</div><!-- fincuerpo card2 -->
+    </div><!-- finprincipal card2 -->  
+    {% endif %} 
+    <!-- ---------------------------------- -->   
+    {% if codigo %}
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container"><!--  resultados de la búsqueda   -->
+        <h1 class="display-6">Diagnósticos asociados: <span class="btn btn-success">{{codigo2|length}}</span></h1>
+      </div>
+    </div>
+    <!-- ---------------------------------- --> 
+<div class="card text-bg-primary mb-3"> <!-- principal card3 -->
+  <div class="card-header"><h5 class="card-title"></h5><!-- cabecera card3 -->
+    <div class="row">
+      <div class="col-md-4"><h4><span class="badge bg-secondary">Código CIE-10</span></h4></div>
+      <div class="col-md-8"><h4><span class="badge bg-secondary">Descripción CIE-10</span></h4></div>
+    </div>
+  </div><!-- fin cabecera card3 -->
+  <div class="card-body"><!-- cuerpo card 3-->
+      {% for resultados in codigo2 %}
+      <div class="row">
+        <div class="col-md-4">{{resultados.CIE_10_Id}}</div>
+        <div class="col-md-8">{{resultados.CIE10_DESC}}</div>
+        <hr>
+      </div>
+      {% endfor %}
+  </div><!-- fincuerpo card3 -->
+  </div><!-- finprincipal card3 -->  
+  <!-- ---------------------------------- -->  
+      {% else %}    
+  <div class="card text-bg-primary mb-3"> <!-- principal card -->
+    <div class="card-header"><!-- cabecera card -->
+      <h1 class="display-6">No existen diagnósticos vinculados <span class="btn btn-danger">{{codigo2|length}}</span></h1>
+      
+    </div><!-- fin cabecera card -->
+  </div><!-- fin principal card -->     
+      {% endif %}
+<!-- ---------------------------------- -->  
+
+  <!-- ---------------------------------- -->   
+  <div class="form-control-lg">
+    <a class="btn btn-primary" href="javascript: history.go(-1)" role="button">Volver</a>
+    </div>
+  <!-- ---------------------------------- -->   
+    
+</div><!--  FIN CONTAINER NUEVO   -->
+<!--  FIN NUEVO   --> 
+
+
+{% endblock cuerpo %} 

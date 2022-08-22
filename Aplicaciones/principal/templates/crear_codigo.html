@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+<!--título-->
+{% block title %}<title>Creación de Códigos</title>{% endblock %}
+<!--bloque de código-->
+{% block cuerpo %} 
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-text">
+        <h3>Cargador de diagnósticos Nativo</h3>
+      </span>
+    </div>
+  </nav>
+<div class="container">
+   <hr>     
+   <div class="mb-3">
+<form method="post">
+{% csrf_token %}
+{{form.as_p}} <!--.as_p lo ponemos en modo párrafo-->
+<button type="submit" class="btn btn-primary">Agregar</button>
+</form>
+</div>
+</div>
+{% endblock cuerpo %} 

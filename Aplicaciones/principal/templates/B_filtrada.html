@@ -1,0 +1,49 @@
+{% extends 'index.html' %}
+
+{% block cuerpo %} 
+<div class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-text">
+            <h3>Buscaste: <strong>{{query}}</strong></h3>
+            <p></p>
+           
+          </span>
+        </div>
+      </nav>
+   
+    {% if codigo %}
+        <p>Diagnósticos encontrados: {{codigo|length}} diagnósticos</p>
+        <!---->
+        <ul class="">
+          <div class="container">
+            <div class="row">
+              <div class="col"> <strong> SNOMED_CT_ID: </strong></div>
+              <div class="col"> <strong>SNOMED_CT_FSN: </strong></div>
+              <div class="col"><strong>CIE_10: </strong></div>
+              <div class="col"><strong>CIE10_DESC: </strong></div>
+              <hr>
+            </div>
+        </div>
+            {% for resultados in codigo %}
+            <div class="container">
+                <div class="row">
+                  <div class="col">{{resultados.SNOMED_CT_ID}} </div>
+                  <div class="col">{{resultados.SNOMED_CT_FSN}}</div>
+                  <div class="col">{{resultados.CIE_10}}</div>
+                  <div class="col">{{resultados.CIE10_DESC}} </div>
+                  <hr>
+                </div>
+            </div>
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Diagnóstico no encontrado</p>
+    {% endif %}
+  </div>  
+
+  <div class="form-control-lg">
+    <a class="btn btn-primary" href="{% url 'prueba_autocomplete' %}" role="button">Volver</a>
+    </div>
+  {% endblock cuerpo %} 
