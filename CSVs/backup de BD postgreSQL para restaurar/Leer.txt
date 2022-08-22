@@ -1,0 +1,26 @@
+--------------------------------------------------------------------------------
+Backup de base de datos en PostgreSQL: (windos10)
+
+consola de comandos y nos ubicamos en: C:\Program Files\PostgreSQL\14\bin
+
+luego los comandos: (hacemos un backup de la bd Nativo30):
+
+-U = usuario
+-h = localhost
+
+	pg_dump -U postgres -h localhost Nativo30 > C:\Users\pax8\Desktop\Nativo30_Backup.sql
+Nos pide nuestro password de PostgreSQL
+
+se guarda en el escritorio como Nativo30_Backup.sql
+o se puede guardar en la carpeta bin, es lo mismo.
+----------------------------------------------------
+
+Para restaurar desde el backup
+primero creamos una base de datos vacía desde desde pg admin
+	Click derecho en Databases y luego Create>Database
+
+Luego: poner el backup en la carpeta bin
+desde cmd ubicados en:	C:\Program Files\PostgreSQL\14\bin
+	psql -h localhost -p 5432 -U postgres -f Nativo30_Backup.sql Nativo30
+
+-----------------------------------------------------------------------------------------------
